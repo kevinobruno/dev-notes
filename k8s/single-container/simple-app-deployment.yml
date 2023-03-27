@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: simple-app
+  template:
+    metadata:
+      labels:
+        component: simple-app
+    spec:
+      containers:
+        - name: simple-app
+          image: kevinoliveira/simple-app
+          ports:
+            - containerPort: 3000

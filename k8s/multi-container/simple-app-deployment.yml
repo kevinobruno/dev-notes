@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: simple-app
+  template:
+    metadata:
+      labels:
+        component: simple-app
+    spec:
+      # volumes:
+      #   - name: storage
+      #     persistentVolumeClaim:
+      #       claimName: persistent-volume-claim
+      containers:
+        - name: simple-app
+          image: kevinoliveira/simple-app
+          ports:
+            - containerPort: 3000
+          # env:
+          #   - name: SOME_ENV_VARIABLE
+          #     value: 'some-env-variable'
+          #   - name: SOME_SECRET_VARIABLE
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: mysecret
+          #         key: SOME_SECRET_VARIABLE
+          # volumeMounts:
+          #   - name: storage
+          #     mountPath: /var/lib/postgresql/data  # Only for Postgres
+          #     subPath: postgres  # Only for Postgres
